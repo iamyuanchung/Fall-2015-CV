@@ -1,0 +1,10 @@
+使用 lena.bmp 原圖寫程式做出下面幾種處理
+1. upside-down 上下顛倒
+2. right-side-left 左右顛倒
+3. diagonally mirrored 對角線鏡射
+4. rotate lena  45 degrees clockwise 順時針45度旋轉
+5. shrink lena in half 長寬各縮小一半
+6. binarize lena at 128 to get a binary image 二值化圖片，以亮度為128當作門檻值，>128則變成 255, <=128變成0
+                                             
+可以用 openCV or matlab 來寫作業。
+基本概念就是把圖以 pixel 為單位讀進來，然後對 pixel 去處理來寫程式。
