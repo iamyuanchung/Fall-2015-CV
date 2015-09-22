@@ -17,7 +17,7 @@
 ###############################
 Homework 1: Basic Image Manipulation
 
-• You may use any programming language of your choice to implement the functions required in assignment #1, provided that you do not use any library calls except for basic image IO.
+• You may use any programming language of your choice to implement the functions required, provided that you do not use any library calls except for basic image IO.
 
 • For part 2, you can use any image processing software. In your report, you must specify which software you used and the steps you took to obtain the required results.
 
