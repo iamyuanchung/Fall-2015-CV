@@ -1,0 +1,29 @@
+###############################
+##### From course website #####
+###############################
+Homework 2: Basic Image Manipulation
+• Binarize Lena with the threshold 128 (0-127,128-255).
+
+• You must not use any availiable libraries beyond image I/O (reading or writing image files from/to the disk/memory). You must do all the requirements by writing your own code (called hardcore programming). This includes binarizing the image, calculating the histogram and finding the connected components.
+
+• You have to draw the histogram. The part where you calculate the histogram must be done hardcored, but you may output your statistics data to a file and use auxiliary program to assist you in drawing the bar graphs, i.e., Excel, gnuplot, sigmaplot, matlab.
+
+• For the connected components, please use 500 pixels as a threshold. Omit regions that have a pixel count less than 500.
+
+• Grading policy
+
+ – Please note whether you used 4-connected or 8-connected neighborhood detection in your report. They will produce different outcomes.
+
+ – Please read "Regulation #3". Those materials should be contained in your report, and it will be the primary basis for which I will grade your work.
+
+ – Please do hardcore programming. Calling libraries beyond image file IOs are strictly prohibited! Doing so will void your homework.
+
+ – Tip: If you find that drawing a cross in the bounding box annoying, you may omit doing so. I will only look at your bounding box (since it is sufficient for deciding a region).
+
+####################
+##### From PPT #####
+####################
+Write a program to generate:
+    - a binary image (threshold at 128)
+    - a histogram
+    - connected components (regions with + at centroid, bounding box)
