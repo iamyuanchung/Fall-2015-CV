@@ -1,3 +1,6 @@
+############################
+##### From TA's e-mail #####
+############################
 使用 lena.bmp 原圖寫程式做出下面幾種處理
 1. upside-down 上下顛倒
 2. right-side-left 左右顛倒
@@ -8,3 +11,38 @@
                                              
 可以用 openCV or matlab 來寫作業。
 基本概念就是把圖以 pixel 為單位讀進來，然後對 pixel 去處理來寫程式。
+
+###############################
+##### From course website #####
+###############################
+Homework 1: Basic Image Manipulation
+
+• You may use any programming language of your choice to implement the functions required in assignment #1, provided that you do not use any library calls except for basic image IO.
+
+• For part 2, you can use any image processing software. In your report, you must specify which software you used and the steps you took to obtain the required results.
+
+• You must use the image 'lena' as your benchmark.
+
+• Due date: 2015/09/29 2:20PM
+
+• Grading policy
+
+ – Failing to provide a report will reduce your grade by 1~2 levels.
+
+ – Using restricted functions within your program (unless specified, as in part 2) will result in a failure of your work.
+
+• Hint: for the hvision library, you may want to try around different linux machines. Since each linux has a different kernel, the precompiled library may not work on all machines.
+
+• Hint: You can use any program language to implement homework. However don't just call libraries, if just call libraries you will get zero point.
+
+####################
+##### From PPT #####
+####################
+1. Use B_PIX to write a program to generate
+    (a) upside-down lena.im
+    (b) right-side-left lena.im
+    (c) diagonally mirrored lena.im
+2. Use Photoshop to
+    (a) rotate lena.im 45 degrees clockwise
+    (b) shrink lena.im in half
+    (c) binarize lena.im at 128 to get a binary image
