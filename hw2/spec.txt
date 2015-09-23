@@ -2,9 +2,9 @@
 ##### From course website #####
 ###############################
 Homework 2: Basic Image Manipulation
-• Binarize Lena with the threshold 128 (0-127,128-255).
+• Binarize Lena with the threshold 128 (0-127, 128-255).
 
-• You must not use any availiable libraries beyond image I/O (reading or writing image files from/to the disk/memory). You must do all the requirements by writing your own code (called hardcore programming). This includes binarizing the image, calculating the histogram and finding the connected components.
+• You must not use any available libraries beyond image I/O (reading or writing image files from/to the disk/memory). You must do all the requirements by writing your own code (called hardcore programming). This includes binarizing the image, calculating the histogram and finding the connected components.
 
 • You have to draw the histogram. The part where you calculate the histogram must be done hardcored, but you may output your statistics data to a file and use auxiliary program to assist you in drawing the bar graphs, i.e., Excel, gnuplot, sigmaplot, matlab.
 
