@@ -28,7 +28,7 @@ def main():
     np.savetxt("dist.csv", dist, delimiter=",")
 
     # TODO: connected components (regions with + at centroid, bounding box)
-
+    
 
 
 if __name__ == '__main__':
