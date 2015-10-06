@@ -1,0 +1,15 @@
+###############################
+##### From course website #####
+###############################
+Homework 3: Histogram Equalization
+• Detail description of equalization can be found at [3] pp. 173~180.
+• Due date: 2015/10/20 (temp) 2:20PM
+• Grading policy
+ – Please include the histogram of the final image. (As in the previous assignment).
+ – Please read "Regulation #3".
+ – Please do hardcore programming.
+
+####################
+##### From PPT #####
+####################
+
