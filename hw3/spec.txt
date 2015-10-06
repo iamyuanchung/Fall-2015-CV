@@ -12,4 +12,5 @@ Homework 3: Histogram Equalization
 ####################
 ##### From PPT #####
 ####################
-
+- Project due on Oct.20
+- Write a program to do historgram equalization.
