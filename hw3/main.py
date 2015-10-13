@@ -42,6 +42,7 @@ def main():
 
     dist_accumulator = dist_accumulator * 255. / np.sum(dist)
 
+    # re-distribute pixel value
     img_he = np.zeros(img.shape, np.int)
     for i in xrange(img.shape[0]):
         for j in xrange(img.shape[1]):
@@ -52,13 +53,13 @@ def main():
         for j in xrange(img.shape[1]):
             dist_he[img_he[i][j]] += 1
 
+    # output the resulting image
+    cv2.imwrite('lena_equalized.bmp', img_he)
+
     # output the histogram of equalized image
     fig = plt.figure()
     plt.bar(np.arange(256), dist_he, color='r')
     plt.savefig('histogram-after-equalized.png')
-
-    # output the resulting image
-    cv2.imwrite('lena_equalized.bmp', img_he)
 
 
 if __name__ == '__main__':
