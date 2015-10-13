@@ -3,7 +3,7 @@
 ###############################
 Homework 3: Histogram Equalization
 • Detail description of equalization can be found at [3] pp. 173~180.
-• Due date: 2015/10/20 (temp) 2:20PM
+• Due date: 2015/10/27 2:20PM
 • Grading policy
  – Please include the histogram of the final image. (As in the previous assignment).
  – Please read "Regulation #3".
@@ -12,5 +12,5 @@ Homework 3: Histogram Equalization
 ####################
 ##### From PPT #####
 ####################
-- Project due on Oct.20
+- Project due on Oct.27
 - Write a program to do historgram equalization.
