@@ -1,0 +1,3 @@
+- Write programs which do binary morphological dilation, erosion, opening, closing, and hit-and-miss transform on a binary image.
+
+- Write programs which do gray scale morphological dilation, erosion, opening, and closing on a gray scale image.
