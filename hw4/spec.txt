@@ -1,3 +1,9 @@
 - Write programs which do binary morphological dilation, erosion, opening, closing, and hit-and-miss transform on a binary image.
 
+- Please use the octogonal 3-5-5-5-3 kernel.
+
+- Please use the "L" shaped kernel (same as the text book) to detect the upper-right corner for hit-and-miss transform.
+
+- Due: November.3.2015
+
 - Write programs which do gray scale morphological dilation, erosion, opening, and closing on a gray scale image.
