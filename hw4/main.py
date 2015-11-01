@@ -42,7 +42,7 @@ def opening(img_bin, kernel):
 def hit_and_miss(img_bin, J_kernel, K_kernel):
     # img_comp is the complement of img_bin
     img_comp = -img_bin + 255
-    return (erosion(img_bin, J_kernel) + erosion(img_comp, K_kernel)) / 2
+    return (((erosion(img_bin, J_kernel) + erosion(img_comp, K_kernel)) / 2) == 255) * 255
 
 def main():
     img = cv2.imread('lena.bmp', 0)
