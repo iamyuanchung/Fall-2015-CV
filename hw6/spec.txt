@@ -1,0 +1,5 @@
+- Yokoi Connectivity Number
+
+• Downsampling Lena from 512x512 to 64x64: Binarize the benchmark image lena, then use 8x8 blocks as a unit, take the topmost-left pixel as the downsampled data.
+
+• Result of this assignment is a 64x64 matrix. Please align the matrix within 1 single A4 page (using 4-connected).
