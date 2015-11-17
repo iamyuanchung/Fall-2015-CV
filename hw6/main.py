@@ -4,46 +4,6 @@ import numpy as np
 import cv2
 
 
-def dilation(img_bin, kernel):
-    img_dil = np.zeros(img_bin.shape, np.int)
-    for i in xrange(img_bin.shape[0]):
-        for j in xrange(img_bin.shape[1]):
-            if img_bin[i][j] > 0:
-                for element in kernel:
-                    p, q = element
-                    if (i + p) >= 0 and (i + p) <= (img_bin.shape[0] - 1) and   \
-                       (j + q) >= 0 and (j + q) <= (img_bin.shape[1] - 1):
-                        img_dil[i + p][j + q] = 255
-    return img_dil
-
-def erosion(img_bin, kernel):
-    img_ero = np.zeros(img_bin.shape, np.int)
-    for i in xrange(img_bin.shape[0]):
-        for j in xrange(img_bin.shape[1]):
-            if img_bin[i][j] > 0:
-                exist = True
-                for element in kernel:
-                    p, q = element
-                    if (i + p) < 0 or (i + p) > (img_bin.shape[0] - 1) or   \
-                       (j + q) < 0 or (j + q) > (img_bin.shape[1] - 1) or   \
-                       img_bin[i + p][j + q] == 0:
-                        exist = False
-                        break
-                if exist:
-                    img_ero[i][j] = 255
-    return img_ero
-
-def closing(img_bin, kernel):
-    return erosion(dilation(img_bin, kernel), kernel)
-
-def opening(img_bin, kernel):
-    return dilation(erosion(img_bin, kernel), kernel)
-
-def hit_and_miss(img_bin, J_kernel, K_kernel):
-    # img_comp is the complement of img_bin
-    img_comp = -img_bin + 255
-    return (((erosion(img_bin, J_kernel) + erosion(img_comp, K_kernel)) / 2) == 255) * 255
-
 def main():
     img = cv2.imread('lena.bmp', 0)
     # img is now a 512 x 512 numpy.ndarray
@@ -53,48 +13,95 @@ def main():
     for i in xrange(img.shape[0]):
         for j in xrange(img.shape[1]):
             if img[i][j] >= 128:
-                img_bin[i][j] = 255
-    # output the binarized image ...
-    cv2.imwrite('lena.bin.bmp', img_bin)
+                img_bin[i][j] = 1
 
-    # kernel is a 3-5-5-5-3 octagon, where
-    # the orgin is at the center
-    kernel = [[-2, -1], [-2, 0], [-2, 1],
-              [-1, -2], [-1, -1], [-1, 0], [-1, 1], [-1, 2],
-              [0, -2], [0, -1], [0, 0], [0, 1], [0, 2],
-              [1, -2], [1, -1], [1, 0], [1, 1], [1, 2],
-              [2, -1], [2, 0], [2, 1]]
+    # downsample lena image from 512x512 to 64x64 by
+    # using 8x8 blocks as a unit and take the
+    # topmost-left pixel as the downsampled data ...
+    img_down = np.zeros((64, 64), np.int)
+    for i in xrange(img_down.shape[0]):
+        for j in xrange(img_down.shape[1]):
+            img_down[i][j] = img_bin[8 * i][8 * j]
 
-    # perform binary morphological dilation
-    print 'performing binary morphological dilation ...\n'
-    img_dil = dilation(img_bin, kernel)
-    cv2.imwrite('lena.bin.dil.bmp', img_dil)
+    # define the operation function for
+    # Yokoi Connectivity Number ...
+    def h(b, c, d, e):
+        if b == c and (d != b or e != b):
+            return 'q'
+        if b == c and (d == b and e == b):
+            return 'r'
+        return 's'
 
-    # perform binary morphological erosion
-    print 'performing binary morphological erosion ...\n'
-    img_ero = erosion(img_bin, kernel)
-    cv2.imwrite('lena.bin.ero.bmp', img_ero)
+    # compute and output Yokoi Connectivity Number ...
+    for i in xrange(img_down.shape[0]):
+        for j in xrange(img_down.shape[1]):
+            if img_down[i][j] > 0:  # foreground pixel
+                if i == 0:
+                    if j == 0:
+                    # top-left
+                        x7, x2, x6 = 0, 0, 0
+                        x3, x0, x1 = 0, img_down[i][j], img_down[i][j + 1]
+                        x8, x4, x5 = 0, img_down[i + 1][j], img_down[i + 1][j + 1]
+                    elif j == img_down.shape[1] - 1:
+                    # top-right
+                        x7, x2, x6 = 0, 0, 0
+                        x3, x0, x1 = img_down[i][j - 1], img_down[i][j], 0
+                        x8, x4, x5 = img_down[i + 1][j - 1], img_down[i + 1][j], 0
+                    else:
+                    # top-row
+                        x7, x2, x6 = 0, 0, 0
+                        x3, x0, x1 = img_down[i][j - 1], img_down[i][j], img_down[i][j + 1]
+                        x8, x4, x5 = img_down[i + 1][j - 1], img_down[i + 1][j], img_down[i + 1][j + 1]
+                elif i == img_down.shape[0] - 1:
+                    if j == 0:
+                    # bottom-left
+                        x7, x2, x6 = 0, img_down[i - 1][j], img_down[i - 1][j + 1]
+                        x3, x0, x1 = 0, img_down[i][j], img_down[i][j + 1]
+                        x8, x4, x5 = 0, 0, 0
+                    elif j == img_down.shape[1] - 1:
+                    # bottom-right
+                        x7, x2, x6 = img_down[i - 1][j - 1], img_down[i - 1][j], 0
+                        x3, x0, x1 = img_down[i][j - 1], img_down[i][j], 0
+                        x8, x4, x5 = 0, 0, 0
+                    else:
+                    # bottom-row
+                        x7, x2, x6 = img_down[i - 1][j - 1], img_down[i - 1][j], img_down[i - 1][j + 1]
+                        x3, x0, x1 = img_down[i][j - 1], img_down[i][j], img_down[i][j + 1]
+                        x8, x4, x5 = 0, 0, 0
+                else:
+                    if j == 0:
+                        x7, x2, x6 = 0, img_down[i - 1][j], img_down[i - 1][j + 1]
+                        x3, x0, x1 = 0, img_down[i][j], img_down[i][j + 1]
+                        x8, x4, x5 = 0, img_down[i + 1][j], img_down[i + 1][j + 1]
+                    elif j == img_down.shape[1] - 1:
+                        x7, x2, x6 = img_down[i - 1][j - 1], img_down[i - 1][j], 0
+                        x3, x0, x1 = img_down[i][j - 1], img_down[i][j], 0
+                        x8, x4, x5 = img_down[i + 1][j - 1], img_down[i + 1][j], 0
+                    else:
+                        x7, x2, x6 = img_down[i - 1][j - 1], img_down[i - 1][j], img_down[i - 1][j + 1]
+                        x3, x0, x1 = img_down[i][j - 1], img_down[i][j], img_down[i][j + 1]
+                        x8, x4, x5 = img_down[i + 1][j - 1], img_down[i + 1][j], img_down[i + 1][j + 1]
 
-    # perform binary morphological closing
-    print 'performing binary morphological closing ...\n'
-    img_close = closing(img_bin, kernel)
-    cv2.imwrite('lena.bin.close.bmp', img_close)
+                a1 = h(x0, x1, x6, x2)
+                a2 = h(x0, x2, x7, x3)
+                a3 = h(x0, x3, x8, x4)
+                a4 = h(x0, x4, x5, x1)
 
-    # perform binary morphological opening
-    print 'performing binary morphological opening ...\n'
-    img_open = opening(img_bin, kernel)
-    cv2.imwrite('lena.bin.open.bmp', img_open)
+                if a1 == 'r' and a2 == 'r' and a3 == 'r' and a4 == 'r':
+                    ans = 5
+                else:
+                    ans = 0
+                    for a_i in [a1, a2, a3, a4]:
+                        if a_i == 'q':
+                            ans += 1
 
-    # kernels for hit-and-miss
-    J_kernel = [[0, -1], [0, 0], [1, 0]]
-    K_kernel = [[-1, 0], [-1, 1], [0, 1]]
+                print '%d' % ans,
 
-    # perform hit-and-miss transformion
-    print 'performing hit-and-miss transformation ...\n'
-    img_ham = hit_and_miss(img_bin, J_kernel, K_kernel)
-    cv2.imwrite('lena.bin.ham.bmp', img_ham)
+            else:
+                print ' ',
 
-    print 'All tasks are done.'
+            if j == img_down.shape[1] - 1:
+                print ''
 
 
 if __name__ == '__main__':
