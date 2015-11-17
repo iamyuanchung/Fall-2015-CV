@@ -1,0 +1,4 @@
+Thinning
+• You may choose to do a 64x64 downsampled (from last assignment) image or a original 512x512 image.
+• The algorithm listed in the textbook is erroneous, please be aware of this.
+• Sample result of a 512x512 image thinned (You are to turn in a 64x64 downsampled one).
