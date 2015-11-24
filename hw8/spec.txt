@@ -1,0 +1,11 @@
+Due date: Dec.8
+
+1. Generate additive white Gaussian noise -> two photos
+
+2. Generate salt-and-pepper noise -> two photos
+
+3. Run box filter (3X3, 5X5) on all noisy images -> four photos
+
+4. Run median filter (3X3, 5X5) on all noisy images -> four photos
+
+5. Run opening followed by closing or closing followed by opening -> four photos
