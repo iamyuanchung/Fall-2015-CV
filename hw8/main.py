@@ -47,7 +47,85 @@ def main():
     img_sp_10 = generate_salt_and_pepper_noise(img, 0, 1, 0.1)
     cv2.imwrite('lena.sp.10.bmp', img_sp_10)
 
-    
+    # Run 3x3 box filter on the image
+    # with white Gaussian noise with
+    # amplitude = 10
+
+
+    # Run 3x3 box filter on the image
+    # with white Gaussian noise with
+    # amplitude = 30
+
+
+    # Run 3x3 box filter on the image
+    # with salt-and-pepper noise with
+    # threshold = 0.05
+
+
+    # Run 3x3 box filter on the image
+    # with salt-and-pepper noise with
+    # threshold = 0.1
+
+
+    # Run 5x5 box filter on the image
+    # with white Gaussian noise with
+    # amplitude = 10
+
+
+    # Run 5x5 box filter on the image
+    # with white Gaussian noise with
+    # amplitude = 30
+
+
+    # Run 5x5 box filter on the image
+    # with salt-and-pepper noise with
+    # threshold = 0.05
+
+
+    # Run 5x5 box filter on the image
+    # with salt-and-pepper noise with
+    # threshold = 0.1
+
+
+    # Run 3x3 median filter on the image
+    # with white Gaussian noise with
+    # amplitude = 10
+
+
+    # Run 3x3 median filter on the image
+    # with white Gaussian noise with
+    # amplitude = 30
+
+
+    # Run 3x3 median filter on the image
+    # with salt-and-pepper noise with
+    # threshold = 0.05
+
+
+    # Run 3x3 median filter on the image
+    # with salt-and-pepper noise with
+    # threshold = 0.1
+
+
+    # Run 5x5 median filter on the image
+    # with white Gaussian noise with
+    # amplitude = 10
+
+
+    # Run 5x5 median filter on the image
+    # with white Gaussian noise with
+    # amplitude = 30
+
+
+    # Run 5x5 median filter on the image
+    # with salt-and-pepper noise with
+    # threshold = 0.05
+
+
+    # Run 5x5 median filter on the image
+    # with salt-and-pepper noise with
+    # threshold = 0.1
+
 
 
 if __name__ == '__main__':
