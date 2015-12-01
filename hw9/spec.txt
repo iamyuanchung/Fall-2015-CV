@@ -1,3 +1,5 @@
+Due date: 2015.12.15
+
 Write programs to generate the following gradient magnitude images and choose proper thresholds to get the binary edge images:
 
 - Roberts operator
