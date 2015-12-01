@@ -1,0 +1,9 @@
+Write programs to generate the following gradient magnitude images and choose proper thresholds to get the binary edge images:
+
+- Roberts operator
+- Prewitt edge detector
+- Sobel edge detector
+- Frei and Chen gradient operator
+- Kirsch compass operator
+- Robinson compass operator
+- Nevatia-Babu 5X5 operator
