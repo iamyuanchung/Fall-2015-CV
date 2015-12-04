@@ -3,6 +3,8 @@ import copy
 import numpy as np
 import cv2
 
+from utils import opening, closing
+
 
 def generate_Gaussian_noise(img, mu, sigma, amplitude):
     return img + amplitude * np.random.normal(mu, sigma, img.shape)
@@ -161,6 +163,37 @@ def main():
     # threshold = 0.1
     img_sp_10_med_5 = median_filter(img_sp_10, 5)
     cv2.imwrite('lena.sp.10.median.5x5.bmp', img_sp_10_med_5)
+
+    # Use octagon as kernel and set the orgin is at the center
+    kernel = [
+        [-2, -1], [-2, 0], [-2, 1],
+        [-1, -2], [-1, -1], [-1, 0], [-1, 1], [-1, 2],
+        [0, -2], [0, -1], [0, 0], [0, 1], [0, 2],
+        [1, -2], [1, -1], [1, 0], [1, 1], [1, 2],
+        [2, -1], [2, 0], [2, 1]
+    ]
+
+    # closing followed by opening on all noisy images
+    img_gauss_10_close_open = opening(closing(img_gauss_10, kernel), kernel)
+    img_gauss_30_close_open = opening(closing(img_gauss_30, kernel), kernel)
+    img_sp_05_close_open = opening(closing(img_sp_05, kernel), kernel)
+    img_sp_10_close_open = opening(closing(img_sp_10, kernel), kernel)
+
+    cv2.imwrite('lena.gaussian.10.close.open.bmp', img_gauss_10_close_open)
+    cv2.imwrite('lena.gaussian.30.close.open.bmp', img_gauss_30_close_open)
+    cv2.imwrite('lena.sp.05.close.open.bmp', img_sp_05_close_open)
+    cv2.imwrite('lena.sp.10.close.open.bmp', img_sp_10_close_open)
+
+    # opening followed by closing on all noisy images
+    img_gauss_10_open_close = closing(opening(img_gauss_10, kernel), kernel)
+    img_gauss_30_open_close = closing(opening(img_gauss_30, kernel), kernel)
+    img_sp_05_open_close = closing(opening(img_sp_05, kernel), kernel)
+    img_sp_10_open_close = closing(opening(img_sp_10, kernel), kernel)
+
+    cv2.imwrite('lena.gaussian.10.open.close.bmp', img_gauss_10_open_close)
+    cv2.imwrite('lena.gaussian.30.open.close.bmp', img_gauss_30_open_close)
+    cv2.imwrite('lena.sp.05.open.close.bmp', img_sp_05_open_close)
+    cv2.imwrite('lena.sp.10.open.close.bmp', img_sp_10_open_close)
 
 
 if __name__ == '__main__':
