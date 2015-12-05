@@ -7,9 +7,14 @@ from utils import opening, closing
 
 
 def generate_Gaussian_noise(img, mu, sigma, amplitude):
+    # The function generates Gaussian noise with the specified
+    # mu, sigma, and amplitude on the given image.
     return img + amplitude * np.random.normal(mu, sigma, img.shape)
 
 def generate_salt_and_pepper_noise(img, low, high, threshold):
+    # The function generates salt-and-pepper noise with the
+    # specified range for uniform sampling and threshold on
+    # the given image.
     prob_map = np.random.uniform(low, high, img.shape)
     img_sp = copy.deepcopy(img)
     for i in xrange(img.shape[0]):
@@ -21,6 +26,8 @@ def generate_salt_and_pepper_noise(img, low, high, threshold):
     return img_sp
 
 def box_filter(img, filter_size):
+    # The function runs box filter with the specified
+    # filter_size on the given image.
     img_fil = np.zeros(
         shape=(img.shape[0] - filter_size, img.shape[1] - filter_size),
         dtype=np.int
@@ -31,6 +38,8 @@ def box_filter(img, filter_size):
     return img_fil
 
 def median_filter(img, filter_size):
+    # The function median filter with the specified
+    # filter_size on the given image.
     img_fil = np.zeros(
         shape=(img.shape[0] - filter_size, img.shape[1] - filter_size),
         dtype=np.int
