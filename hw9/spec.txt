@@ -14,4 +14,4 @@ Write programs to generate the following gradient magnitude images and choose pr
 
 6. Robinson compass operator
 
-7. Nevatia-Babu 5X5 operator
+7. Nevatia-Babu 5x5 operator
