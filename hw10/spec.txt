@@ -3,7 +3,11 @@ Due date: 2015.12.22
 Write the following programs to detect edge:
 
 Zero-crossing on the following four types of images to get edge images (choose proper thresholds), p.349 
+
 - Laplacian
+
 - minimum-variance Laplacian
+
 - Laplacian of Gaussian
+
 - Difference of Gaussian (use tk to generate D.O.G.) 
