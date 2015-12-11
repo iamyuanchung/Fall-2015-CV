@@ -2,12 +2,17 @@ Due date: 2015.12.22
 
 Write the following programs to detect edge:
 
-Zero-crossing on the following four types of images to get edge images (choose proper thresholds), p.349 
+Zero-crossing on the following four types of images to get edge images (choose proper thresholds):
+    - Laplacian
+    - minimum-variance Laplacian
+    - Laplacian of Gaussian
+    - Difference of Gaussian (inhibitory sigma=1, excitatory sigma=3, kernel size 11x11)
 
-- Laplacian
+You may generate the Difference of Gaussian kernel either by tk, matlab or in anyway you like.
 
-- minimum-variance Laplacian
-
-- Laplacian of Gaussian
-
-- Difference of Gaussian (use tk to generate D.O.G.) 
+Threshold Values listed below are for reference:
+    - Laplace Mask Type1: 15
+    - Laplace Mask Type2: 15
+    - Minimum variance Laplacian: 20
+    - Laplace of Gaussian: 3000
+    - Difference of Gaussian: 1
