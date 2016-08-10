@@ -1,2 +1,3 @@
 # README #
-This repository contains homework & project of Computer Vision done at NTU during semester 104-1.
+
+This repository contains all of my materials of homework and projects finished during the 2015 Fall Computer Vision course at NTU.
